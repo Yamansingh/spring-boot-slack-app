@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,17 +24,14 @@ public class User {
     private String userName;
     private Integer userAge;
 
-    //@OneToOne(cascade =CascadeType.ALL)
-    //@JoinColumn(name = "fk_add_id")
-    //@OneToMany(cascade = CascadeType.ALL)
-   // @JoinColumn(name ="fk_em_id" ,referencedColumnName="emp_id")
-    //private List<userAddress> userAddresses;
-   // private userAddress userAddress;
+    @OneToMany(targetEntity = Address.class,cascade = CascadeType.ALL)
+    @JoinColumn(name="user_Id",referencedColumnName = "userId")
+    private List<Address> addresses ;
 
 //    {
 //        "userName":"rounak",
 //            "userAge":23,
-//            "userAddress":
+//            "Address":
 //        {
 //            "city":"belangir",
 //                "pin":245304

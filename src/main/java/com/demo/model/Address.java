@@ -2,10 +2,8 @@ package com.demo.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
@@ -14,11 +12,14 @@ import javax.persistence.Id;
 @Getter
 @Setter
 
-public class userAddress {
+public class Address {
     @Id
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer addressId;
     private String city;
     private Integer pin;
+
+
 
 }
