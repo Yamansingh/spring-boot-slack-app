@@ -1,10 +1,40 @@
 type Query {
+    user(user_Id:Int):User
     users: [User]
+    addresses:[Address]
+    address(user_id:Int):Address
 }
 
+
+type Mutation {
+    saveUser(User: UserInput): User
+    saveAddress(Address:AddressInput,user_id:Int):Address
+    updateAddress(address_id :Int,city : String,pin:Int):Address
+    deleteAddress(addressId:Int):Address
+}
+
+
 type User {
+    userId:Int!
     userName: String!
     userAge: Int
+    addresses :[Address]
+}
 
 
+type Address{
+   pin: Int
+   city:String
+}
+
+
+input UserInput {
+        userName: String!
+        userAge: Int!
+        addresses :[AddressInput]
+}
+
+input AddressInput {
+      pin: Int
+      city:String
 }

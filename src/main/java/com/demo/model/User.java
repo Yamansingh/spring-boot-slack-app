@@ -1,5 +1,6 @@
 package com.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,9 +25,12 @@ public class User {
     private String userName;
     private Integer userAge;
 
-    @OneToMany(targetEntity = Address.class,cascade = CascadeType.ALL)
-    @JoinColumn(name="user_Id",referencedColumnName = "userId")
-    private List<Address> addresses ;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("user")
+    private List<Address> addressList = new ArrayList<>();
+
+
 
 //    {
 //        "userName":"rounak",
