@@ -14,9 +14,12 @@ import java.util.Optional;
 public class userController {
     @Autowired
     private userService userService;
+
+
     //http://localhost:8089/saveUser
     @PostMapping("/saveUser")
     public ResponseEntity<User> saveUserHandler(@RequestBody User user){
+
         User savedUser = userService.saveUser(user);
         return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
     }

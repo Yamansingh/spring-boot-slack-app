@@ -24,7 +24,7 @@ public class Address {
     private Integer pin;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private User user;

@@ -67,7 +67,10 @@ public class UserDataFetcher {
         return new ResponseEntity<>(address, HttpStatus.CREATED);
             }
 
-
+//       @DgsData(parentType = "UserInput",field = "addresses")
+//       public List<Address> saveAdd(@InputArgument("AddressInput") AddressInput addressInput ){
+//         return addDao.save(addressInput);
+//       }
 
 
       @DgsData(parentType = "Mutation",field = "updateAddress")
@@ -85,7 +88,7 @@ public class UserDataFetcher {
       }
 
 
-    @DgsData(parentType = "User", field = "addresses")
+    @DgsData(parentType = "User", field = "addressList")
     public List<Address> getAdd(DgsDataFetchingEnvironment dfe) {
 
         User user = dfe.getSource();

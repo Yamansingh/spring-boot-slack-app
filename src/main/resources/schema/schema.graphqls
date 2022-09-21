@@ -18,7 +18,8 @@ type User {
     userId:Int!
     userName: String!
     userAge: Int
-    addresses :[Address]
+    password:String
+    addressList :[Address]
 }
 
 
@@ -31,10 +32,12 @@ type Address{
 input UserInput {
         userName: String!
         userAge: Int!
-        addresses :[AddressInput]
+        password:String
+        addressList :[AddressInput]
 }
 
 input AddressInput {
       pin: Int
       city:String
+
 }

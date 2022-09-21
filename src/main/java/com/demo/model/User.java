@@ -25,8 +25,11 @@ public class User {
     private String userName;
     private Integer userAge;
 
+    @Convert(converter = AttributeEncryptor.class)
+    private String password;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnoreProperties("user")
     private List<Address> addressList = new ArrayList<>();
 
