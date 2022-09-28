@@ -14,14 +14,21 @@ type Mutation {
 }
 
 
-type User {
+type User @key(fields: "userId"){
     userId:Int!
     userName: String!
     userAge: Int
     password:String
     addressList :[Address]
 }
+type Bank @key(fields:"id userId") @extends {
+    id:Int @external
+    userId:Int @external
+    UserDetails:User
 
+
+
+}
 
 type Address{
    pin: Int

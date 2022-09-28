@@ -1,6 +1,7 @@
 package com.demo.controller;
 
 import com.demo.model.Address;
+import com.demo.model.Bank;
 import com.demo.model.User;
 import com.demo.repository.userAddressDao;
 import com.demo.repository.userDao;
@@ -10,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @DgsComponent
@@ -103,6 +105,33 @@ public class UserDataFetcher {
         addDao.deleteById(addressId);
         return add;
     }
+
+
+    ///////////Bank
+
+
+    @DgsEntityFetcher(name = "Bank")
+    public Bank bank(Map<Integer,Object> values){
+
+       // return new Ba((Integer) values.get("userId"), (List<Bank>) values.get("banks"));
+       // return new Bank((Integer) values.get("Id"),(Integer) values.get("userId"));
+       // return new Bank((Integer) values.get("id"),(User)values.get("user"),(Integer) values.get("userId"));
+         return new Bank((Integer) values.get("id"),(Integer) values.get("userId"));
+
+
+    }
+    @DgsData(parentType = "Bank",field = "UserDetails")
+    public Optional<User> userDetails(DgsDataFetchingEnvironment dfe){
+     Bank bank = dfe.getSource();
+        System.out.println("bank.getId():"+bank.getId());
+        System.out.println("bank:  "+bank);
+
+        System.out.println("bank.getUserId():"+bank.getUserId());
+
+          return userDao.findById(bank.getUserId());
+
+    }
+
 
 
 }
